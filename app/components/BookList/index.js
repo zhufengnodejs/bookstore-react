@@ -12,7 +12,8 @@ export default class BookList extends Component {
         });
     }
     show(book){
-        hashHistory.push(`/detail/${book._id}`);
+        this.context.router.push(`/detail/${book._id}`);
+        //hashHistory.push(`/detail/${book._id}`);
     }
     render(){
         return (
@@ -39,4 +40,7 @@ export default class BookList extends Component {
             </div>
         )
     }
+}
+BookList.contextTypes = {
+    router:React.PropTypes.object
 }

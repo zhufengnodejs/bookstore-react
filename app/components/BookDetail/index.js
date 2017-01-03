@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {hashHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 export default class BookDetail extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +8,6 @@ export default class BookDetail extends Component {
     }
 
     componentDidMount() {
-        console.log(hashHistory);
         $.get(`http://localhost:3000/books/${this.props.params._id}`).done((book)=> {
             this.setState({book});
         });
@@ -20,13 +19,13 @@ export default class BookDetail extends Component {
             method: 'DELETE',
             context: this,
             success(data){
-                hashHistory.push('/');
+                this.context.router.push('/');
             }
         })
     }
 
     handleBack() {
-        hashHistory.goBack();
+        this.context.router.goBack();
     }
 
     render() {
@@ -53,4 +52,7 @@ export default class BookDetail extends Component {
             </div>
         )
     }
+}
+BookDetail.contextTypes = {
+    router:React.PropTypes.object
 }

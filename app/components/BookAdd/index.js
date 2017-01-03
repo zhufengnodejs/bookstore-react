@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {hashHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 export default class BookAdd extends Component {
     handleSubmit(event){
         event.preventDefault();
@@ -9,7 +9,7 @@ export default class BookAdd extends Component {
         var image = this.refs.image.value;
         var book = {name,price,image};
         $.post('http://localhost:3000/books',book).done((book)=>{
-            hashHistory.push('/');
+            this.context.router.push('/');
         });
     }
     render(){
@@ -37,4 +37,7 @@ export default class BookAdd extends Component {
             </div>
         )
     }
+}
+BookAdd.contextTypes = {
+    router:React.PropTypes.object
 }

@@ -39,7 +39,9 @@ app.put('/books',function(req,res){
 });
 app.delete('/books',function(req,res){
     var _id = req.query._id;
+    console.log('delete',_id);
     Book.remove({_id},function(err,result){
+        console.log(result);
         res.send({});
     });
 });
